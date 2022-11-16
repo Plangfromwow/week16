@@ -2,7 +2,7 @@
   {{ department.id }} - {{ department.name }} {{ department.location }}
   <button>Edit</button> <button (click)="doDelete()">Delete</button>
 </div>
-<div>
+<div *ngIf="false">
   <input type="text" [(ngModel)]="newName" />
   <input type="text" [(ngModel)]="newLocation" />
   <button (click)="doEdit()">Save</button><button>Cancel</button>
