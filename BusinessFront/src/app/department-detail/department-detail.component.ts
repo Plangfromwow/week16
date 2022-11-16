@@ -14,7 +14,11 @@ export class DepartmentDetailComponent implements OnInit {
 	location:''
 };
 
+newName:string = '';
+newLocation:string = '';
+
 @Output() delete:EventEmitter<string> = new EventEmitter<string>()
+@Output() edit:EventEmitter<Department> = new EventEmitter<Department>()
 	constructor() {}
 
 	ngOnInit(): void {
@@ -24,4 +28,13 @@ export class DepartmentDetailComponent implements OnInit {
 		this.delete.emit(this.department.id);
 	}
 
+	doEdit(){
+		let newDept:Department={
+			id : this.department.id,
+			name: this.newName,
+			location: this.newLocation,
+		};
+
+		this.edit.emit(newDept);
+	}
 }

@@ -9,7 +9,7 @@ import { DepartmentService } from '../department.service';
 })
 export class DepartmentListComponent implements OnInit {
 
-  TheList: Department[] = [];
+  TheList: Department[] = []; 
 
 
   constructor(public DepSrv: DepartmentService) { }
@@ -19,22 +19,26 @@ export class DepartmentListComponent implements OnInit {
   }
 
   refresh(){
-    this.DepSrv.getAll(
-      (result: Department[]) => {
+    this.DepSrv.getAll((result: Department[]) => {
         //inside here is where we put the code for doing something with the list we got back
         this.TheList = result;
-      }
-    );
+      });
   }
 
 // after we delete we have to refresh the list.
   doDeleteOne(id: string) {
     this.DepSrv.delete(
-      (result: string) => {
+      (result: any) => {
         console.log(result);
         this.refresh();
       }, id
     )
+  }
+
+  doEdit(dep:Department){
+    this.DepSrv.update((result:any) =>{
+      this.refresh();
+    },dep);
   }
 
 }

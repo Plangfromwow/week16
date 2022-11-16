@@ -32,14 +32,14 @@ namespace BusinessV2API.Controllers
         public string Delete(string id)
         {
             Department.Delete(id);
-            return "Deleted";
+            return "{\"status\": \"Deleted\" }";
         }
         //Update
         [HttpPut]
-        public string Update(Department dep)
+        public Object Update(Department dep)
         {
             Department.Update(dep);
-            return "Updated";
+            return new { status = "ok" };
         }
 
     }
